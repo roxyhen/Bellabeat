@@ -83,3 +83,17 @@ HAVING numRow > 1
 # No data to display, no duplicate rows in Weight_Log
 ;
 
+# Identifying records with zero total steps in Daily_Activity
+SELECT Id, COUNT(*) AS numZeroStepDays
+ FROM `bellabeat-case-study-347717.Fitbit.Daily_Activity` 
+ WHERE TotalSteps = 0 
+ GROUP BY Id
+ ORDER BY numZeroStepDays DESC
+ # 15 records reflect zero step days
+ ;
+ 
+ # Deleting rows where TotalSteps equals zero
+DELETE FROM `bellabeat-case-study-347717.Fitbit.Daily_Activity` 
+WHERE TotalSteps = 0
+;
+
