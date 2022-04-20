@@ -1,0 +1,85 @@
+                                        ### Bellabeat Case Study: Processing Data
+
+# Filtering out unique IDs to identify total number of participants with daily activity info.
+SELECT DISTINCT Id  
+FROM `bellabeat-case-study-347717.Fitbit.Daily_Activity` 
+# 33 unique IDs
+;
+
+# Filtering out unique IDs to identify total number of participants with daily calories info.
+SELECT DISTINCT Id 
+FROM `bellabeat-case-study-347717.Fitbit.Daily_Calories` 
+# 33 unique IDs
+;
+
+# Filtering out unique IDs to identify total number of participants with daily intensities info.
+SELECT DISTINCT Id
+ FROM `bellabeat-case-study-347717.Fitbit.Daily_Intensities` 
+ # 33 unique IDs
+ ;
+ 
+ # Filtering out unique IDs to identify total number of participants with daily steps info.
+SELECT DISTINCT Id
+ FROM `bellabeat-case-study-347717.Fitbit.Daily_Steps` 
+ #33 unique IDs
+ ;
+ 
+ # Filtering out unique IDs to identify total number of participants with sleep log info.
+SELECT DISTINCT Id
+ FROM `bellabeat-case-study-347717.Fitbit.Sleep_Log` 
+ # 24 unique IDs
+ ;
+ 
+ # Filtering out unique IDs to identify total number of participants with weight log info.
+SELECT  DISTINCT Id
+FROM `bellabeat-case-study-347717.Fitbit.Weight_Log` 
+# 8 unique IDs
+
+# Finding duplicate rows in Daily_Activity
+SELECT  Id, ActivityDate, COUNT(*) AS numRow
+FROM `bellabeat-case-study-347717.Fitbit.Daily_Activity` 
+GROUP BY Id, ActivityDate
+HAVING numRow > 1
+# No data to display, no duplicate rows in Daily_Activity
+;
+
+# Finding dupliacte rows in Daily_Calories
+SELECT  Id, ActivityDay, COUNT(*) AS numRow
+FROM `bellabeat-case-study-347717.Fitbit.Daily_Calories` 
+GROUP BY Id, ActivityDay
+HAVING numRow > 1
+# No data to display, no duplicate rows in Daily_Calories
+;
+
+# Finding duplicate rows in Daily_Intensities
+SELECT  Id, ActivityDay, COUNT(*) AS numRow
+FROM `bellabeat-case-study-347717.Fitbit.Daily_Intensities` 
+GROUP BY Id, ActivityDay
+HAVING numRow > 1
+# No data to display, no duplicate rows in Daily_Intensities
+;
+
+# Finding duplicate rows in Daily_Steps
+SELECT  Id, ActivityDay, COUNT(*) AS numRow
+FROM `bellabeat-case-study-347717.Fitbit.Daily_Steps` 
+GROUP BY Id, ActivityDay
+HAVING numRow > 1
+# No data to display, no duplicate rows in Daily_Steps
+;
+
+# Finding duplicate rows in Sleep_Log
+SELECT Id, SleepDay, COUNT(*) AS numRow
+FROM `bellabeat-case-study-347717.Fitbit.Sleep_Log` 
+GROUP BY Id, SleepDay
+HAVING numRow > 1
+# No data to display, no duplicate rows in Sleep_Log
+;
+
+# Finding duplicate rows in Weight_Log
+SELECT Id, Date, COUNT(*) AS numRow
+FROM `bellabeat-case-study-347717.Fitbit.Weight_Log` 
+GROUP BY Id, Date
+HAVING numRow > 1
+# No data to display, no duplicate rows in Weight_Log
+;
+
