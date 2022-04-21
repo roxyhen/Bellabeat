@@ -1,0 +1,33 @@
+                                                   ### Bellabeat Case Study Visualizations in RStudio
+
+# Visualizing the relationship between sendentary minutes, steps taken, and calories burned
+ggplot(data=daily_activity, aes(x=TotalSteps, y=SedentaryMinutes, color = Calories)) + geom_point()
+;
+
+# Visualizing the trends in app usage and days of the week
+ggplot(data=combined_data,aes(x=DayOfTheWeek, fill=DayOfTheWeek)) + geom_bar(stat = "count") +
+  theme(plot.title = element_text(hjust = 0.5, lineheight = 0.8, face = "bold")) + 
+  labs(x = 'Day of Week',
+       y = 'Frequency',
+       title = 'App usage across the week')
+;
+
+# Visualizing the relationship between time in bed and minutes spent asleep
+ggplot(data=daily_sleep, aes(x=TotalMinutesAsleep, y=TotalTimeInBed)) + geom_point(aes(color=Date))
+;
+
+# Visualizing the distribution of types of activity logged
+Data_Ind <- combined_data %>%
+  summarise(Sum_VAM = sum(VeryActiveMinutes/1148807*100), 
+         Sum_FAM = sum(FairlyActiveMinutes/1148807*100), 
+         Sum_LAM = sum(LightlyActiveMinutes/1148807*100), 
+         Sum_SEM = sum(SedentaryMinutes/1148807*100),
+         Sum_TOTAL=sum(VeryActiveMinutes+FairlyActiveMinutes+LightlyActiveMinutes+SedentaryMinutes)) %>% 
+  round(digits = 2)
+  ;
+  slices <- c(Data_Ind$Sum_VAM, Data_Ind$Sum_FAM, Data_Ind$Sum_LAM, Data_Ind$Sum_SEM)
+lbls <- c("Very Active Min", "Fairly Active Min", "Lightly Active Min", "Sedentary Min")
+pie(slices,
+    labels=paste(lbls, slices, sep=" ", "%"),
+    col = rainbow(6),
+    main="Pie Chart - % of Activity in Minutes")
